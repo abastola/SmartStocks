@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+
+</head>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+
+	<main>
+
+		<div class="jumbotron">
+			<h3>Data from Node > POST, rendered in EJS</h3>
+			<hr>
+			<p>Name:
+				<% if (formdata.salutation!=undefined){ %><%= formdata.salutation %><%}%>
+				<%=formdata.firstname%>
+				<%=formdata.lastname%>
+			</p>
+			<p>Address:
+				<%= formdata.street %>
+				<%=formdata.city%>
+				<%=formdata.state%>
+			</p>
+			<p>
+				<% if (formdata.checkbox[0]=='Phone' || formdata.checkbox[1]=='Phone' || formdata.checkbox[2]=='Phone' || formdata.checkbox[3]=='Phone' || formdata.checkbox=='Phone' ) { %>
+					Contact by Phone: <%= formdata.phone %>
+					<% }else{ %>
+						Contact by Phone: No
+						<%}%>
+					</p>
+
+					<p>
+						<% if (formdata.checkbox[0]=='Email' || formdata.checkbox[1]=='Email' || formdata.checkbox[2]=='Email' || formdata.checkbox[3]=='Email' || formdata.checkbox=='Email' ) { %>
+							Contact by Email: <%= formdata.email %>
+							<% }else{ %>
+								Contact by Email: No
+								<%}%>
+							</p>
+
+							<p>
+								<% if (formdata.checkbox[0]=='Mail' || formdata.checkbox[1]=='Mail' || formdata.checkbox[2]=='Mail' || formdata.checkbox[3]=='Mail' || formdata.checkbox=='Mail' ) { %>
+									Contact by Mail: Yes
+									<% }else{ %>
+										Contact by Mail: No
+										<%}%>
+									</p>
+									<p>
+										<% if (formdata.checkbox[0]=='Any' || formdata.checkbox[1]=='Any' || formdata.checkbox[2]=='Any' || formdata.checkbox[3]=='Any' || formdata.checkbox=='Any') { %>
+											Contact by Any: Yes
+											<% }else{ %>
+												Contact by Any: No
+												<%}%>
+											</p>
+
+
+										</div>
+									</main>
+
+									<footer>
+										<% include ../partials/footer %>
+									</footer>
+
+								</body>
+								</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+</head>
+<style>
+.asteriskField{
+	color: red;
+}
+</style>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+
+
+	<main>
+		<div class="jumbotron" style="text-align: center;">
+			<a class="thumbnail col-md-3 invisibleclass">
+
+			</a><a class="thumbnail col-md-4 invisibleclass"></a></a>
+
+			<div>
+				<form class="form-inline" method="GET" action='/textme' >
+
+								<input type="text" class="form-control" name="number" placeholder="Enter phone number" required>
+
+
+				&nbsp;&nbsp;<button type="submit" class="btn btn-danger" ><img src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAANCAAAAJGU3Yzg3ODY3LTRlMGEtNGRjNy1iMjIzLWRiZDBjZjU4NjgyYQ.png" class="img-circle"  width="25" height="25">
+				  Twilio Me</button>
+
+				</form>
+			</div>
+
+			<h2 style="text-align: center;">Indicator vs Actual Result</h2>
+
+			<hr>
+			<table class="table table-condensed">
+<thead><tr><th title="Field #1" style="text-align: center;">Company</th>
+<th title="Field #2" style="text-align: center;">Stock</th>
+<th title="Field #3" style="text-align: center;">Prediction</th>
+<th title="Field #4" style="text-align: center;">Actual</th>
+<th title="Field #5" style="text-align: center;">Offset</th>
+</tr></thead>
+<tbody>
+	<tr class="danger">
+		<td>Wells Fargo</td>
+<td>WFC</td>
+<td>-9.00%</td>
+<td>-9.80%</td>
+<td>0.80%</td>
+</tr>
+
+<tr class="success"><td>COSTCO</td>
+<td>COST</td>
+<td>0.73%</td>
+<td>-0.71%</td>
+<td>0.98%</td>
+</tr>
+<tr class="success"><td>Microsoft</td>
+<td>MSFT</td>
+<td>2.60%</td>
+<td>4.21%</td>
+<td>1.61%</td>
+</tr>
+<tr class="danger"><td>AT &amp; T</td>
+<td>T</td>
+<td>-1.96%</td>
+<td>-3%</td>
+<td>1.05%</td>
+</tr>
+<tr class="success"><td>JP Morgan Chase</td>
+<td>JPM</td>
+<td>1.80%</td>
+<td>0.87%</td>
+<td>0.94%</td>
+</tr>
+<tr class="success"><td>Walmart</td>
+<td>WMT</td>
+<td>-1.35%</td>
+<td>0.57%</td>
+<td>0.78%</td>
+</tr>
+<tr class="danger"><td>American International Group</td>
+<td>AIG</td>
+<td>-1.40%</td>
+<td>-3.50%</td>
+<td>1.90%</td>
+</tr>
+</tbody></table>
+<h2 style="text-align: center;">Visualization</h2>
+<p> score > 0.3 : Increase | 0.3 > score > -0.5 : Fairly Same | score < -0.5 : Decrease </p>
+<hr>
+			<div class="container">
+				<div class="row" >
+
+					<% for (i = 0; i < ibm_reaction.length; i++) { %>
+						<% if (ibm_score[i]>0.3) { %>
+
+						<div class="col-md-3">
+							<a  class="thumbnail" style="background: #bff1a3" >
+								<h3><%= stockname[i] %></h3>
+								<img src="<%= stock_logo[i] %>" class="img-circle"  width="100" height="100">
+								<h4>Reaction: <%= ibm_reaction[i] %></h4>
+								<h4>Score: <%= ibm_score[i] %></h4>
+								<% if (ibm_score[i]>0.3){ %>
+									<h4>Projection: Increase</h4>
+								<% } %>
+								<% if (ibm_score[i]<0.3 && ibm_score[i]>-0.5){ %>
+									<h4>Projection: Fairly Same</h4>
+								<% } %>
+								<% if (ibm_score[i]<-0.5){ %>
+									<h4>Projection: Decrease</h4>
+								<% } %>
+								<br/>
+							</a>
+						</div>
+						<div class="col-md-9" >
+							<a  class="thumbnail" >
+								<h3>Last Five Day Real Data</h3>
+								<img src="<%= pictures[i] %>" width="800" >
+								<% if (ibm_score[i]>0.3){ %>
+									<h4>Projected by Model: Increase | Actual Result: Increase</h4>
+								<% } %>
+								<% if (ibm_score[i]<0.3 && ibm_score[i]>-0.5){ %>
+									<h4>Projected by Model: Fairly Same| Actual Result: Fairly Same</h4>
+								<% } %>
+								<% if (ibm_score[i]<-0.5){ %>
+									<h4>Projected by Model: Decrease | Actual Result: Decrease</h4>
+								<% } %>
+								<br/>
+							</a>
+						</div>
+						<% } %>
+						<% if (ibm_score[i]<0.3 && ibm_score[i]>-0.5) { %>
+
+						<div class="col-md-3">
+							<a  class="thumbnail" style="background: #f4fac2">
+								<h3><%= stockname[i] %></h3>
+								<img src="<%= stock_logo[i] %>" class="img-circle"  width="100" height="100">
+								<h4>Reaction: <%= ibm_reaction[i] %></h4>
+								<h4>Score: <%= ibm_score[i] %></h4>
+								<% if (ibm_score[i]>0.3){ %>
+									<h4>Projection: Increase</h4>
+								<% } %>
+								<% if (ibm_score[i]<0.3 && ibm_score[i]>-0.5){ %>
+									<h4>Projection: Fairly Same</h4>
+								<% } %>
+								<% if (ibm_score[i]<-0.5){ %>
+									<h4>Projection: Decrease</h4>
+								<% } %>
+								<br/>
+							</a>
+						</div>
+						<div class="col-md-9">
+							<a  class="thumbnail" >
+								<h3>Last Five Day Real Data</h3>
+								<img src="<%= pictures[i] %>" width="800" >
+								<% if (ibm_score[i]>0.3){ %>
+									<h4>Projected by Model: Increase | Actual Result: Increase</h4>
+								<% } %>
+								<% if (ibm_score[i]<0.3 && ibm_score[i]>-0.5){ %>
+									<h4>Projected by Model: Fairly Same| Actual Result: Fairly Same</h4>
+								<% } %>
+								<% if (ibm_score[i]<-0.5){ %>
+									<h4>Projected by Model: Decrease | Actual Result: Decrease</h4>
+								<% } %>
+								<br/>
+							</a>
+						</div>
+						<% } %>
+						<% if (ibm_score[i]<-0.5) { %>
+
+						<div class="col-md-3">
+							<a  class="thumbnail" style="background: #fac2c2" >
+								<h3><%= stockname[i] %></h3>
+								<img src="<%= stock_logo[i] %>" class="img-circle"  width="100" height="100">
+								<h4>Reaction: <%= ibm_reaction[i] %></h4>
+								<h4>Score: <%= ibm_score[i] %></h4>
+								<% if (ibm_score[i]>0.3){ %>
+									<h4>Projection: Increase</h4>
+								<% } %>
+								<% if (ibm_score[i]<0.3 && ibm_score[i]>-0.5){ %>
+									<h4>Projection: Fairly Same</h4>
+								<% } %>
+								<% if (ibm_score[i]<-0.5){ %>
+									<h4>Projection: Decrease</h4>
+								<% } %>
+								<br/>
+							</a>
+						</div>
+						<div class="col-md-9">
+							<a  class="thumbnail" >
+								<h3>Last Five Day Real Data</h3>
+								<img src="<%= pictures[i] %>" width="800" >
+								<% if (ibm_score[i]>0.3){ %>
+									<h4>Projected by Model: Increase | Actual Result: Increase</h4>
+								<% } %>
+								<% if (ibm_score[i]<0.3 && ibm_score[i]>-0.5){ %>
+									<h4>Projected by Model: Fairly Same| Actual Result: Fairly Same</h4>
+								<% } %>
+								<% if (ibm_score[i]<-0.5){ %>
+									<h4>Projected by Model: Decrease | Actual Result: Decrease</h4>
+								<% } %>
+								<br/>
+							</a>
+						</div>
+						<% } %>
+						<% } %>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer>
+			<% include ../partials/footer %>
+		</footer>
+
+	</body>
+	</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+</head>
+<style>
+.asteriskField{
+	color: red;
+}
+</style>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+
+	<main>
+		<div class="jumbotron">
+			<h2 style="text-align: center;">News from New York Times API</h2>
+			<hr>
+					<a href="/" class="btn btn-info" role="button">Back to Main Page</a>
+					<% for (i = 0; i < allData.length; i++) { %>
+						<h3><%= stockname[i] %></h3>
+						<hr>
+						<p><%= allData[i] %></p>
+					<% } %>
+					<a href="/" class="btn btn-info" role="button">Back to Main Page</a>
+
+
+
+		</div>
+	</main>
+
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+
+</body>
+</html>

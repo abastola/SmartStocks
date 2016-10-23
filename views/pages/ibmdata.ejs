@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% include ../partials/head %>
+</head>
+<style>
+.asteriskField{
+	color: red;
+}
+</style>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+
+
+	<main>
+		<div class="jumbotron" style="text-align: center;">
+			
+			<h2 style="text-align: center;">Step 2: How were past 2 weeks for these companies?</h2>
+			<hr>
+
+			<div class="container">
+				<div class="row" >
+
+					<% for (i = 0; i < ibm_reaction.length; i++) { %>
+						<% if (ibm_reaction[i]=='positive') { %>
+						<div class="col-md-3">
+							<a href="" class="thumbnail" style="background: #bff1a3">
+								<h3><%= stockname[i] %></h3>
+								<img src="<%= stock_logo[i] %>" class="img-circle"  width="200" height="200">
+								<h4>Reaction: <%= ibm_reaction[i] %></h4>
+								<h4>Score: <%= ibm_score[i] %></h4>
+								<br/>
+							</a>
+						</div>
+						<% }else{ %>
+							<div class="col-md-3">
+								<a href="" class="thumbnail" style="background: #fac2c2">
+									<h3><%= stockname[i] %></h3>
+									<img src="<%= stock_logo[i] %>" class="img-circle"  width="200" height="200">
+									<h4>Reaction: <%= ibm_reaction[i] %></h4>
+									<h4>Score: <%= ibm_score[i] %></h4>
+									<br/>
+								</a>
+							</div>
+							<% } %>
+						<% } %>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer>
+			<% include ../partials/footer %>
+		</footer>
+
+	</body>
+	</html>
