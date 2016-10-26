@@ -91,7 +91,7 @@ var twilio = require('twilio');
 
 // Create a new REST API client to make authenticated requests against the
 // twilio back end
-var client = new twilio.RestClient('ACc6d281ba1ea7c543d5d34121585ab2c4', '59cfac97be7ef6afb7d73daae867ae03');
+var client = new twilio.RestClient('key', 'sid');
 
 //Phone Number for Twilio
 var phonenumber='';
@@ -129,7 +129,7 @@ function SendTheText(){
 /*
 //IBM alchemy API calls
 var alchemy_language = watson.alchemy_language({
-apikey: '6b91f98b6e5d1a887f92d044cd9815cc9b31c9c4'
+apikey: 'api key'
 });
 
 for (var apicallnumber=0; apicallnumber<8; apicallnumber++){
@@ -176,7 +176,7 @@ function getOutputFile(NewsDay){
   request.get({
     url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
     qs: {
-      'api-key': "4789451a7da2439e9ff1c3a1c2a3d4cf",
+      'api-key': "api-key",
       'q': "Samsung",
       'page': NewsDay
 
